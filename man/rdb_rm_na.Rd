@@ -2,7 +2,7 @@
 % Please edit documentation in R/extras_rdb.R
 \name{rdb_rm_na}
 \alias{rdb_rm_na}
-\title{Remove ou substitui NA.}
+\title{Substitui NA numerico ou char.}
 \usage{
 rdb_rm_na(x, from = NULL, to = NULL)
 }
@@ -17,10 +17,10 @@ rdb_rm_na(x, from = NULL, to = NULL)
 Vetor x com as devidas alteracoes
 }
 \description{
-Remove acentos agudos, circunflexos, tremas e crases e cedilhas de caracteres e strings.
+Substitui NA por algum valor fornecido ou padroniza com NA.
 }
 \details{
-Quando from = NULL, padrao, busca em numerico os valores  'NA, NaN, NULL, -Inf, Inf' e
+Quando from = NULL, padrão, busca em numérico os valores  'NA, NaN, NULL, -Inf, Inf' e
 quando character busca por '','.','NA','na','N/A','n/a','NaN','nan' e troca pelo valor de
-to. Quando to = NULL, padrao, substitui pelo padrao do R que eh NA.
+to. Quando to = NULL, padrão, substitui pelo padrão do R que é NA.
 }

@@ -7,11 +7,13 @@
 is_cep(i, fix_na = TRUE)
 }
 \arguments{
-\item{i}{vetor de numeros CEP}
+\item{i}{vetor de números CEP}
 
 \item{fix_na}{vetor de strings a serem removidas caso existam.}
 }
 \description{
-Via regex e limpeza de dados, verifica se i eh um cep. Olha-se apenas a estrutura
-nao validamos se o cep eh valido nos correios
+Via regex e limpeza de dados, verifica se i é um cep.
+}
+\details{
+Olha-se apenas a estrutura. Não validamos se o cep é valido nos correios.
 }

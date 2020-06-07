@@ -12,5 +12,5 @@ is_cpf(i, fix_na = TRUE)
 \item{fix_na}{vetor de strings a serem removidas caso existam.}
 }
 \description{
-Com apoio do pacote "validaRA" testa se o vetor recebido eh um cpf.
+Com apoio do pacote "validaRA" testa se o vetor recebido é um cpf.
 }

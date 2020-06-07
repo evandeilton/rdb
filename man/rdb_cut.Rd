@@ -12,5 +12,5 @@ rdb_cut(n, nrows = 1000)
 \item{nrows}{Total de linhas por bloco}
 }
 \description{
-Ajuda a quebrar um conjunto de dados com base no n informado
+Ajuda a quebrar um conjunto de dados com base no total de linhas desejado.
 }

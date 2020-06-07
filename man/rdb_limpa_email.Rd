@@ -9,7 +9,7 @@ rdb_limpa_email(email, rm_accent = TRUE, fix_na = TRUE)
 \arguments{
 \item{email}{vetor de characters.}
 
-\item{rm_accent}{logico indicando se deve buscar e remover acentos em email}
+\item{rm_accent}{lógico indicando se deve buscar e remover acentos em email}
 
 \item{fix_na}{se tiver algum tipo de na no vetor "email" será removido}
 }
@@ -18,6 +18,6 @@ Vetor de characters detectados como e-mail
 }
 \description{
 Aplica-se uma regex bem formatada para checar se as strings contendo dados de e-mails
-está correta. Se houver alguma alguma string que não bate com a regex então é removida
-e tratada como não e-mail ou e-mail inválido
+estão corretas. Se houver alguma alguma string que não bate com a regex então esta é removida
+e tratada como não e-mail ou e-mail inválido.
 }

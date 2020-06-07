@@ -2,7 +2,7 @@
 % Please edit documentation in R/extras_rdb.R
 \name{is_int64}
 \alias{is_int64}
-\title{Testa se o valor eh int64 ou logico}
+\title{Testa se o valor eh int64 ou lógico}
 \usage{
 is_int64(i)
 }
@@ -10,8 +10,8 @@ is_int64(i)
 \item{i}{vetor qualqer}
 }
 \value{
-TRUE se o vetor i eh de classe integer64
+TRUE se o vetor i é de classe integer64
 }
 \description{
-Testa se o valor eh int64 ou logico
+Testa se o valor eh int64 ou lógico
 }

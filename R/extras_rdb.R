@@ -4,7 +4,7 @@
 
 #' Remove acentos de caracteres.
 #'
-#' @description Remove acentos (agudos, circunflexos, tremas e crases) e cedilhas de caracteres e strings.
+#' @description Remove acentos agudos, circunflexos, tremas, crases e cedilhas de Caractéres e strings.
 #' @param str vetor de characters.
 #' @return Vetor de characters sem acentos e sem cedilhas.
 #' @examples
@@ -31,14 +31,15 @@ rdb_rm_accent <- function(str) {
   return(chartr(paste(symbols, collapse=""), paste(nudeSymbols, collapse=""), stringi::stri_unescape_unicode(str)))
 }
 
-#' Remove ou substitui NA.
-#' @description Remove acentos agudos, circunflexos, tremas e crases e cedilhas de caracteres e strings.
+#' Substitui NA numerico ou char.
+#'
+#' @description Substitui NA por algum valor fornecido ou padroniza com NA.
 #' @param x Vetor qualquer
 #' @param from Qual o codigo que quer remover.
 #' @param to Qual o valor a substituir
-#' @details Quando from = NULL, padrao, busca em numerico os valores  'NA, NaN, NULL, -Inf, Inf' e
+#' @details Quando from = NULL, padrão, busca em numérico os valores  'NA, NaN, NULL, -Inf, Inf' e
 #' quando character busca por '','.','NA','na','N/A','n/a','NaN','nan' e troca pelo valor de
-#' to. Quando to = NULL, padrao, substitui pelo padrao do R que eh NA.
+#' to. Quando to = NULL, padrão, substitui pelo padrão do R que é NA.
 #' @return Vetor x com as devidas alteracoes
 #' @export
 rdb_rm_na <- function(x, from = NULL, to = NULL){
@@ -70,11 +71,12 @@ rdb_rm_na <- function(x, from = NULL, to = NULL){
 
 
 #' Limpa texto de e-mail baseado em regex
+#'
 #' @description Aplica-se uma regex bem formatada para checar se as strings contendo dados de e-mails
-#' está correta. Se houver alguma alguma string que não bate com a regex então é removida
-#' e tratada como não e-mail ou e-mail inválido
+#' estão corretas. Se houver alguma alguma string que não bate com a regex então esta é removida
+#' e tratada como não e-mail ou e-mail inválido.
 #' @param email vetor de characters.
-#' @param rm_accent logico indicando se deve buscar e remover acentos em email
+#' @param rm_accent lógico indicando se deve buscar e remover acentos em email
 #' @param fix_na se tiver algum tipo de na no vetor "email" será removido
 #' @return Vetor de characters detectados como e-mail
 #' @importFrom stringr str_squish
@@ -96,10 +98,10 @@ rdb_limpa_email <- function(email, rm_accent = TRUE, fix_na = TRUE){
 #' Verifica se a string eh email
 #'
 #' @description Aplica-se uma regex bem formatada para checar se as strings contendo dados de e-mails
-#' está correta. Se houver alguma alguma string que não bate com a regex então é removida
-#' e tratada como não e-mail ou e-mail inválido
+#' está correta. Se houver alguma alguma que não bate com a regex então esta é removida
+#' e tratada como não e-mail ou e-mail inválido.
 #' @param email vetor de characters.
-#' @param rm_accent logico indicando se deve buscar e remover acentos em email
+#' @param rm_accent lógico indicando se deve buscar e remover acentos em email
 #' @param fix_na se tiver algum tipo de na no vetor será removido
 #' @return Vetor de characters detectados como e-mail
 #' @importFrom stringr str_squish
@@ -116,21 +118,21 @@ is_email <- function(email, rm_accent = TRUE, fix_na = TRUE) {
 }
 
 
-#' Testa se o valor eh int64 ou logico
+#' Testa se o valor eh int64 ou lógico
 #'
 #' @param i vetor qualqer
-#' @return TRUE se o vetor i eh de classe integer64
+#' @return TRUE se o vetor i é de classe integer64
 is_int64 <- function(i) {
   if( inherits(i, c("integer64","logical"))) TRUE else FALSE
 }
 
 #' Testa se o valor eh data
 #'
-#' @description Permite avaliar, atraves do tipo ou do conteudo, se um vetor de dados recebido eh ou nao no tipo data
+#' @description Permite avaliar, através do tipo ou do conteúdo, se um vetor de dados recebido é ou não no tipo data
 #' @param i vetor qualqer
-#' @param check se TRUE (padao) avalia o conteudo de i e infere se a variavel total eh de data
+#' @param check se TRUE (padão) avalia o conteúdo de i e infere se a variável total é de data
 #' @param fix_na se tiver algum tipo de na no vetor será removido
-#' @return TRUE se o vetor i eh das classes de data
+#' @return TRUE se o vetor é das classes de data
 #' @export
 is_date <- function(i, check = TRUE, fix_na = TRUE) {
 
@@ -156,13 +158,13 @@ is_date <- function(i, check = TRUE, fix_na = TRUE) {
   }
 }
 
-#' Testa se o valor eh numero
+#' Testa se o valor eh numerico
 #'
-#' @description Permite avaliar, atraves do tipo ou do conteudo, se um vetor de dados recebido eh ou nao no tipo numerico
-#' @param i vetor qualqer numerico
-#' @param check se TRUE (padao) avalia o conteudo de i e infere se a variavel total eh de data
-#' @param fix_na se tiver algum tipo de na no vetor será removido
-#' @return TRUE se o vetor i eh das classes numericas
+#' @description Permite avaliar, através do tipo ou do conteúdo, se um vetor de dados recebido é ou não no tipo numérico
+#' @param i vetor qualqer numérico
+#' @param check se TRUE (padão) avalia o conteúdo de i e infere se a variável é de data
+#' @param fix_na se tiver algum tipo de NA no vetor será removido
+#' @return TRUE se o vetor i é das classes numéricas
 #' @importFrom stringr str_squish str_replace_all
 #' @export
 is_num <- function(i, check = TRUE, fix_na = FALSE){
@@ -183,14 +185,14 @@ is_num <- function(i, check = TRUE, fix_na = FALSE){
   is.numeric(as.numeric(i))
 }
 
-#' Testa se o valor eh numerico e se nao for converte
+#' Testa se o valor eh numerico. Se nao for, converte.
 #'
-#' @description Verifica se o conteudo do vetor passado eh de numeros. Quando check = TRUE, a estrutura do dado
-#' eh testadao via regex e se o padrao for detactado, o vetor eh definido como numerico.
+#' @description Verifica se o conteúdo do vetor passado é de números. Quando check = TRUE, a estrutura do dado
+#' é testada via regex e se o padrão for detectado, o vetor é definido como numérico.
 #' @param i vetor qualquer
 #' @param check TRUE checa a estrutura do dado
-#' @param fix_na vetor de strings a serem removidas caso existam.
-#' @return vetor numerico tratado a partir de i
+#' @param fix_na vetor de strings a serem removidas, caso existam.
+#' @return vetor numérico tratado a partir de i
 #' @importFrom stringr str_squish
 #' @export
 as_num <- function(i, check = TRUE, fix_na = TRUE){
@@ -211,7 +213,7 @@ as_num <- function(i, check = TRUE, fix_na = TRUE){
 
 #' Testa se o valor eh CPF
 #'
-#' Com apoio do pacote "validaRA" testa se o vetor recebido eh um cpf.
+#' @description Com apoio do pacote "validaRA" testa se o vetor recebido é um cpf.
 #' @param i vetor de CPF. Ver \code{\link[validaRA]{valida_doc}}
 #' @param fix_na vetor de strings a serem removidas caso existam.
 #' @import validaRA
@@ -227,7 +229,7 @@ is_cpf <- function(i, fix_na = TRUE){
 
 #' Testa se o valor eh CNPJ
 #'
-#' Com apoio do pacote "validaRA" testa se o vetor recebido eh um CNPJ.
+#' @description Com apoio do pacote "validaRA" testa se o vetor recebido é um CNPJ.
 #' @param i vetor de CNPJ. Ver \code{\link[validaRA]{valida_doc}}
 #' @param fix_na vetor de strings a serem removidas caso existam.
 #' @import validaRA
@@ -243,8 +245,8 @@ is_cnpj <- function(i, fix_na = TRUE){
 
 #' Testa se o valor eh PIS
 #'
-#' Com apoio do pacote "validaRA" testa se o vetor recebido eh um PIS
-#' @param i vetor de numeros PIS. Ver \code{\link[validaRA]{valida_doc}}
+#' @description Com apoio do pacote "validaRA" testa se o vetor recebido é um PIS
+#' @param i vetor de números PIS. Ver \code{\link[validaRA]{valida_doc}}
 #' @param fix_na vetor de strings a serem removidas caso existam.
 #' @import validaRA
 #' @importFrom stringr str_squish str_replace_all
@@ -260,9 +262,9 @@ is_pis <- function(i, fix_na = TRUE){
 
 #' Testa se o valor eh CEP
 #'
-#' Via regex e limpeza de dados, verifica se i eh um cep. Olha-se apenas a estrutura
-#' nao validamos se o cep eh valido nos correios
-#' @param i vetor de numeros CEP
+#' @description Via regex e limpeza de dados, verifica se i é um cep.
+#' @details Olha-se apenas a estrutura. Não validamos se o cep é valido nos correios.
+#' @param i vetor de números CEP
 #' @param fix_na vetor de strings a serem removidas caso existam.
 #' @importFrom stringr str_extract str_replace_all str_squish
 #' @export
@@ -279,12 +281,12 @@ is_cep <- function(i, fix_na = TRUE){
 
 #' Limpa CEP
 #'
-#' Via regex e limpeza de dados, verifica-se a estrutura do vetor informado, removendo tudo que nao for
-#' numero e completando com zeros a esquerda casos com menos de 8 digitos. Se o CEP for da forma
-#' 99999-999, o traco eh removido e o numero retorna limpo.
-#' Nao validamos se o cep eh valido nos correios.
-#' @param cep vetor de numeros ou strings de CEP
-#' @param fix_na padroes de NA removidos do numero ou string i
+#' @description Via regex e limpeza de dados, verifica-se a estrutura do vetor informado, removendo tudo que não for
+#' número e completando com zeros a esquerda casos com menos de 8 digitos. Se o CEP for da forma
+#' 99999-999, o traço é removido e o número retorna limpo.
+#' não validamos se o cep é valido nos correios.
+#' @param cep vetor de números ou strings de CEP
+#' @param fix_na padroes de NA removidos do número ou string i
 #' @importFrom stringr str_extract str_replace_all str_squish str_pad
 #' @export
 rdb_limpa_cep <- function(cep, fix_na = TRUE){
@@ -303,16 +305,16 @@ rdb_limpa_cep <- function(cep, fix_na = TRUE){
 
 #' Limpa CPF/CNPJ
 #'
-#' Com apoio do pacote "validaRA", regexes e avaliacao o comprimento das strings no campo de
+#' @description Com apoio do pacote "validaRA", regexes e avaliação do comprimento das strings no campo de
 #' CPF/CNPJ recebido, verifica a validade do campo segundo regras de construcao do CPF/CNPJ e acerta o tamanho.
-#' Pontos, barras e tracos sao removidos e apenas um vetor numeroc em forma de string eh retornado.
+#' Pontos, barras e tracos sao removidos e apenas um vetor númerico em forma de string é retornado.
 #' Ver \code{\link[validaRA]{valida_doc}} para mais detalhes.
-#' @param doc vetor de numeros ou strings de CPF/CNPJ.
-#' @param fix_na padroes de NA removidos do numero ou string i
+#' @param doc vetor de números ou strings de CPF/CNPJ.
+#' @param fix_na padrões de NA removidos do número ou string i
 #' @importFrom stringr str_replace_all str_squish str_pad str_length
 #' @importFrom dplyr tibble mutate case_when select
 #' @import validaRA
-#' @return tibbla com tres colunas, uma com o doc outras com logico se CPF = TRUE ou CNPJ = TRUE
+#' @return tibbla com três colunas, uma com o doc outras com lógico se CPF = TRUE ou CNPJ = TRUE
 #' @export
 rdb_limpa_cpf_cnpj <- function(doc, fix_na = TRUE) {
   i <- if(fix_na){
@@ -333,6 +335,7 @@ rdb_limpa_cpf_cnpj <- function(doc, fix_na = TRUE) {
 }
 
 #' Corrige UTF-8 encoding
+#'
 #' @description Recebe um vetor string de tipos em formado UTF-8 e tentar corrigir para latin-1
 #' desta forma, conservando letras como c cidilhado e acentos. Outros formatos de encoding de
 #' saida são suportados.
@@ -351,11 +354,10 @@ rdb_try_fix_encoding <- function(x, enc = "latin1"){
   return(y)
 }
 
-# ----------------------------------------------------------------------------------------
-# Funções para leitura de dados de diversos tipos, formatos e tamanhos.
-# ----------------------------------------------------------------------------------------
-
 #' Leitura de dados com pacote rio
+#'
+#' @description Este é apenas um wraper que deixa a função \code{\link[rio]{import}}
+#' melhor formatada para passar na função \code{\link{rdb_read}}
 #' @param file Nome do arquivo a ser importado
 #' @param ... Argumentos
 #' @importFrom rio import
@@ -367,6 +369,9 @@ rdb_read_bf_rio <- function(file, ...){
 
 
 #' Leitura de dados com pacote data.table
+#'
+#' @description Este é apenas um wraper que deixa a função \code{\link[data.table]{fread}}
+#' melhor formatada para passar na função \code{\link{rdb_read}}
 #' @param file Nome do arquivo a ser importado.
 #' @param control Controle com todos argumentos necessários para importar dados para uso inteno com a rdb_read()
 #' @importFrom data.table fread
@@ -380,6 +385,9 @@ rdb_read_bf_dt <- function(file, control = rdb_read_control(type = "fread")){
 }
 
 #' Leitura de dados com pacote readr
+#'
+#' @description Este é apenas um wraper que deixa as funções \code{\link[readr]{read_csv2}} e
+#' \code{\link[readr]{read_delim}} conveniente para passar na função \code{\link{rdb_read}}
 #' @param file Nome do arquivo a ser importado.
 #' @param control Controle com todos argumentos necessários para importar dados para uso inteno com a rdb_read()
 #' @importFrom readr read_csv2 read_delim
@@ -401,6 +409,9 @@ rdb_read_bf_rd <- function(file, control = rdb_read_control(type = "readr")){
 }
 
 #' Leitura de dados com pacote vroom
+#'
+#' @description Este é apenas um wraper que deixa a função \code{\link[vroom]{vroom}}
+#' melhor formatada para passar na função \code{\link{rdb_read}}
 #' @param file Nome do arquivo a ser importado.
 #' @param control Controle com todos argumentos necessários para importar dados para uso inteno com a rdb_read()
 #' @importFrom vroom vroom
@@ -415,24 +426,25 @@ rdb_read_bf_vr <- function(file, control = rdb_read_control(type = "vroom")){
 }
 
 #' @title Controle para leitura de arquivos grandes (Big Files)
-#' @description Esta funcao eh uma chave para passar argumentos para a função rdb_read
-#' @param type Nome do mecanisco de leitura. Podendo sem um em "fread","readr","vroom" ou "rio". Veja os detalhes abaixo para mais detalhes.
-#' @param delim Delimitador de colunas, se nao souber deixe NULL. Pode ser, ",", ";", "|" e outros conforme seu arquivo.
-#' @param dec Deparador decimal.
-#' @param try_append Se TRUE (padrao) tenta apendar (empilhar) os dados. Se FALSE retorna lista de tabelas, uma para cada arquivo importado.
-#' @param sep Agrupador de campos para formatacao de numeros
-#' @param quote Regex para quotation. Serve para nao confundir com aspas que delimita strings.
-#' @param escape_backslash Utilizar contrabarra para saltar caracteres especiais
+#'
+#' @description Esta função é uma chave para passar argumentos para a função rdb_read
+#' @param type Nome do mecanisco de leitura. Podendo sem um em "fread","readr","vroom" ou "rio". Veja os detalhes abaixo para saber mais.
+#' @param delim Delimitador de colunas, se não souber deixe NULL. Pode ser, ",", ";", "|" e outros conforme seu arquivo.
+#' @param dec Separador decimal.
+#' @param try_append Se TRUE (padrão) tenta apendar (empilhar) os dados. Se FALSE retorna lista de tabelas, uma para cada arquivo importado.
+#' @param sep Agrupador de campos para formatação de números
+#' @param quote Regex para quotation. Serve para não confundir com aspas que delimita strings.
+#' @param escape_backslash Utilizar contrabarra para saltar Caractéres especiais
 #' @param escape_double Se TRUE o valor '""' representara um unico \"
-#' @param col_names TRUE, FALSE, um vetor de nomes ou numeros que serao tratados como indices para selecionar colunas
-#' @param col_types Se NULL trabalha com os padroes do pacote readr. Se data.table, utiliza os padroes da funao \code{\link[data.table]{fread}}
-#' @param col_select Vetor de nomes ou indices a selecionar.
-#' @param encoding Encoding do arquivo. Como padrao pega as configuracoes do Sistema Operacional
+#' @param col_names TRUE, FALSE, um vetor de nomes ou números que serao tratados como índices para selecionar colunas
+#' @param col_types Se NULL trabalha com os padroes do pacote readr. Se data.table, utiliza os padroes da funão \code{\link[data.table]{fread}}
+#' @param col_select Vetor de nomes ou índices a selecionar.
+#' @param encoding Encoding do arquivo. Como padrão pega as configurações do Sistema Operacional
 #' @param na Tipo de valor para substituir NA
-#' @param comment Caractere a ser tratado como comentario. Padrao e hashtag
+#' @param comment Caractére a ser tratado como comentario. padrão e hashtag
 #' @param trim_ws Limpar espacos em branco a direita e esquerda das colunas
-#' @param skip Numero de linhas a saltar na leitura dos dados
-#' @param n_max Numero de linhas que quer extrair. Se Inf retorna o maximo de linhas
+#' @param skip número de linhas a saltar na leitura dos dados
+#' @param n_max número de linhas que quer extrair. Se Inf retorna o maximo de linhas
 #' @param guess_max Total de linhas por partes lidas (chunksize)
 #' @param altrep Controle dos tipos de dados na leitura por \code{\link[vroom]{vroom}}
 #' @param progress Mostrar progresso da leitura dos dados
@@ -500,32 +512,32 @@ rdb_read_control <- function(type = "fread", delim = NULL, dec = NULL, try_appen
 }
 
 #' @title Leitura de arquivos grandes (Big Files)
-#' @description Esta funcao eh um ensemble que junta muitas funcoes otimizadas de pacotes especiais do
+#' @description Esta função é um ensemble que junta muitas funções otimizadas de pacotes especiais do
 #' R. Entre eles, readr, data.table, vroom e rio.
 #' @param file Vetor ou lista de strings com nomes de arquivos a serem importados da maioria das extensoes. Arquivos copactados em .gz e .bgz
 #' @param type Nome do mecanisco de leitura. Podendo sem um em "fread","readr","vroom" ou "rio". Veja os detalhes abaixo para mais detalhes.
-#' @param delim Delimitador de colunas, se nao souber deixe NULL. Pode ser, ",", ";", "|" e outros conforme seu arquivo.
+#' @param delim Delimitador de colunas, se não souber deixe NULL. Pode ser, ",", ";", "|" e outros conforme seu arquivo.
 #' @param dec Deparador decimal.
-#' @param try_append Se TRUE (padrao) tenta apendar (empilhar) os dados. Se FALSE retorna lista de tabelas, uma para cada arquivo importado.
-#' @param sep Agrupador de campos para formatacao de numeros
-#' @param quote Regex para quotation. Serve para nao confundir com aspas que delimita strings.
-#' @param escape_backslash Utilizar contrabarra para saltar caracteres especiais
-#' @param escape_double Se TRUE o valor '""' representara um unico \"
-#' @param col_names TRUE, FALSE, um vetor de nomes ou numeros que serao tratados como indices para selecionar colunas
-#' @param col_types Se NULL trabalha com os padroes do pacote readr. Se data.table, utiliza os padroes da funao \code{\link[data.table]{fread}}
-#' @param col_select Vetor de nomes ou indices a selecionar.
-#' @param encoding Encoding do arquivo. Como padrao pega as configuracoes do Sistema Operacional
+#' @param try_append Se TRUE (padrão) tenta apendar (empilhar) os dados. Se FALSE retorna lista de tabelas, uma para cada arquivo importado.
+#' @param sep Agrupador de campos para formatação de números
+#' @param quote Regex para quotation. Serve para não confundir com aspas que delimita strings.
+#' @param escape_backslash Utilizar contrabarra para saltar Caractéres especiais
+#' @param escape_double Se TRUE o valor '""' representará um unico \"
+#' @param col_names TRUE, FALSE, um vetor de nomes ou números que serao tratados como índices para selecionar colunas
+#' @param col_types Se NULL trabalha com os padroes do pacote readr. Se data.table, utiliza os padroes da funão \code{\link[data.table]{fread}}
+#' @param col_select Vetor de nomes ou índices a selecionar.
+#' @param encoding Encoding do arquivo. Como padrão pega as configurações do Sistema Operacional
 #' @param na Tipo de valor para substituir NA
-#' @param comment Caractere a ser tratado como comentario. Padrao e hashtag
+#' @param comment Caractére a ser tratado como comentario. padrão e hashtag
 #' @param trim_ws Limpar espacos em branco a direita e esquerda das colunas
-#' @param skip Numero de linhas a saltar na leitura dos dados
-#' @param n_max Numero de linhas que quer extrair. Se Inf retorna o maximo de linhas
+#' @param skip número de linhas a saltar na leitura dos dados
+#' @param n_max número de linhas que quer extrair. Se Inf retorna o maximo de linhas
 #' @param guess_max Total de linhas por partes lidas (chunksize)
 #' @param altrep Controle dos tipos de dados na leitura por \code{\link[vroom]{vroom}}
 #' @param progress Mostrar progresso da leitura dos dados
 #' @param skip_empty_rows Ignorar linhas vazias
-#' @param ... Outros argumentos de funcoes quando trabalhando com o pacote \code{\link[rio]{import}}
-#' @details Para obter detalhes completos destas funcoes e seus argumentos
+#' @param ... Outros argumentos de funções quando trabalhando com o pacote \code{\link[rio]{import}}
+#' @details Para obter detalhes completos destas funções e seus argumentos
 #' consulte a documentacao original dos seus desenvolvedores conforme lista abaixo:
 #' \itemize{
 #'     \item Para type = "fread" veja \code{\link[data.table]{data.table}} e \code{\link[data.table]{fread}}.
@@ -589,7 +601,7 @@ rdb_read <- function(file, type = "fread", delim = NULL, dec = NULL, try_append 
 
 #' Particao de dados
 #'
-#' @description Ajuda a quebrar um conjunto de dados com base no n informado
+#' @description Ajuda a quebrar um conjunto de dados com base no total de linhas desejado.
 #' @param n Total de linhas da base total
 #' @param nrows Total de linhas por bloco
 #' @export
@@ -620,9 +632,11 @@ rdb_clean_brackets <- function(x){
 
 
 #' Grava dados em um banco via ODBC
+#'
 #' @description Recebe parametros de uma conexao odbc ativa e exporta uma base de dados
 #' como data.frame, tibbla, matriz ou data.table subindo por partes.
-#' @details A configuracao dos tipos de dados e feita atraves de metodos do pacote DBI,
+#'
+#' @details A configuracao dos tipos de dados e feita através de métodos do pacote DBI,
 #' dplyr e dbplyr. Existem duas formas de salvar dados no banco de dados. Se a escolha for
 #' method = 'dbi' o R tentara salvar a base de dados em parte utilizando methodos do pacote DBI,
 #' caso method = 'copy' ele tentara salvar os dados de uma unica vez sem quebra em partes.
@@ -632,11 +646,11 @@ rdb_clean_brackets <- function(x){
 #' @param con Conexao ativa odbc. Veja \code{\link[DBI]{dbConnect}} para mais detalhes
 #' @param data Objeto de dados. Pdoe ser data.frame ou qualquer objeto que se posssa converter em data.frame
 #' @param name String de nome da tabela que vai ser grabada no banco com os dados do objeto 'data'
-#' @param schema String de nome do schema do banco de dados que deseja salvar. Padrao e 'dbo'
+#' @param schema String de nome do schema do banco de dados que deseja salvar. padrão e 'dbo'
 #' @param method String com um entre os valoes 'dbi' ou 'copy'. Vaje details para mais informacoes.
 #' @param chunk_size Define o total de linhas que cada lote salvara no banco por vez.
 #' @param verbose Se TRUE que mostra todo o log do processo ou apenas algumas partes.
-#' @param append Se TRUE e a tabela ja existir no banco de dados ele tenta apendar os dados.
+#' @param append Se TRUE e a tabela ja existir no banco de dados ele tenta apendar (empilhar) os dados.
 #' @importFrom DBI dbWriteTable dbIsValid dbExistsTable
 #' @importFrom dplyr copy_to
 #' @importFrom dbplyr in_schema

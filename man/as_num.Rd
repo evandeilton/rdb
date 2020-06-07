@@ -2,7 +2,7 @@
 % Please edit documentation in R/extras_rdb.R
 \name{as_num}
 \alias{as_num}
-\title{Testa se o valor eh numerico e se nao for converte}
+\title{Testa se o valor eh numerico. Se nao for, converte.}
 \usage{
 as_num(i, check = TRUE, fix_na = TRUE)
 }
@@ -11,12 +11,12 @@ as_num(i, check = TRUE, fix_na = TRUE)
 
 \item{check}{TRUE checa a estrutura do dado}
 
-\item{fix_na}{vetor de strings a serem removidas caso existam.}
+\item{fix_na}{vetor de strings a serem removidas, caso existam.}
 }
 \value{
-vetor numerico tratado a partir de i
+vetor numérico tratado a partir de i
 }
 \description{
-Verifica se o conteudo do vetor passado eh de numeros. Quando check = TRUE, a estrutura do dado
-eh testadao via regex e se o padrao for detactado, o vetor eh definido como numerico.
+Verifica se o conteúdo do vetor passado é de números. Quando check = TRUE, a estrutura do dado
+é testada via regex e se o padrão for detectado, o vetor é definido como numérico.
 }

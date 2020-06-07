@@ -7,13 +7,13 @@
 rdb_limpa_cep(cep, fix_na = TRUE)
 }
 \arguments{
-\item{cep}{vetor de numeros ou strings de CEP}
+\item{cep}{vetor de números ou strings de CEP}
 
-\item{fix_na}{padroes de NA removidos do numero ou string i}
+\item{fix_na}{padroes de NA removidos do número ou string i}
 }
 \description{
-Via regex e limpeza de dados, verifica-se a estrutura do vetor informado, removendo tudo que nao for
-numero e completando com zeros a esquerda casos com menos de 8 digitos. Se o CEP for da forma
-99999-999, o traco eh removido e o numero retorna limpo.
-Nao validamos se o cep eh valido nos correios.
+Via regex e limpeza de dados, verifica-se a estrutura do vetor informado, removendo tudo que não for
+número e completando com zeros a esquerda casos com menos de 8 digitos. Se o CEP for da forma
+99999-999, o traço é removido e o número retorna limpo.
+não validamos se o cep é valido nos correios.
 }

@@ -7,10 +7,10 @@
 is_pis(i, fix_na = TRUE)
 }
 \arguments{
-\item{i}{vetor de numeros PIS. Ver \code{\link[validaRA]{valida_doc}}}
+\item{i}{vetor de números PIS. Ver \code{\link[validaRA]{valida_doc}}}
 
 \item{fix_na}{vetor de strings a serem removidas caso existam.}
 }
 \description{
-Com apoio do pacote "validaRA" testa se o vetor recebido eh um PIS
+Com apoio do pacote "validaRA" testa se o vetor recebido é um PIS
 }

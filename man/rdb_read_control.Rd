@@ -29,39 +29,39 @@ rdb_read_control(
 )
 }
 \arguments{
-\item{type}{Nome do mecanisco de leitura. Podendo sem um em "fread","readr","vroom" ou "rio". Veja os detalhes abaixo para mais detalhes.}
+\item{type}{Nome do mecanisco de leitura. Podendo sem um em "fread","readr","vroom" ou "rio". Veja os detalhes abaixo para saber mais.}
 
-\item{delim}{Delimitador de colunas, se nao souber deixe NULL. Pode ser, ",", ";", "|" e outros conforme seu arquivo.}
+\item{delim}{Delimitador de colunas, se não souber deixe NULL. Pode ser, ",", ";", "|" e outros conforme seu arquivo.}
 
-\item{dec}{Deparador decimal.}
+\item{dec}{Separador decimal.}
 
-\item{try_append}{Se TRUE (padrao) tenta apendar (empilhar) os dados. Se FALSE retorna lista de tabelas, uma para cada arquivo importado.}
+\item{try_append}{Se TRUE (padrão) tenta apendar (empilhar) os dados. Se FALSE retorna lista de tabelas, uma para cada arquivo importado.}
 
-\item{sep}{Agrupador de campos para formatacao de numeros}
+\item{sep}{Agrupador de campos para formatação de números}
 
-\item{quote}{Regex para quotation. Serve para nao confundir com aspas que delimita strings.}
+\item{quote}{Regex para quotation. Serve para não confundir com aspas que delimita strings.}
 
-\item{escape_backslash}{Utilizar contrabarra para saltar caracteres especiais}
+\item{escape_backslash}{Utilizar contrabarra para saltar Caractéres especiais}
 
 \item{escape_double}{Se TRUE o valor '""' representara um unico \"}
 
-\item{col_names}{TRUE, FALSE, um vetor de nomes ou numeros que serao tratados como indices para selecionar colunas}
+\item{col_names}{TRUE, FALSE, um vetor de nomes ou números que serao tratados como índices para selecionar colunas}
 
-\item{col_select}{Vetor de nomes ou indices a selecionar.}
+\item{col_select}{Vetor de nomes ou índices a selecionar.}
 
-\item{col_types}{Se NULL trabalha com os padroes do pacote readr. Se data.table, utiliza os padroes da funao \code{\link[data.table]{fread}}}
+\item{col_types}{Se NULL trabalha com os padroes do pacote readr. Se data.table, utiliza os padroes da funão \code{\link[data.table]{fread}}}
 
-\item{encoding}{Encoding do arquivo. Como padrao pega as configuracoes do Sistema Operacional}
+\item{encoding}{Encoding do arquivo. Como padrão pega as configurações do Sistema Operacional}
 
 \item{na}{Tipo de valor para substituir NA}
 
-\item{comment}{Caractere a ser tratado como comentario. Padrao e hashtag}
+\item{comment}{Caractére a ser tratado como comentario. padrão e hashtag}
 
 \item{trim_ws}{Limpar espacos em branco a direita e esquerda das colunas}
 
-\item{skip}{Numero de linhas a saltar na leitura dos dados}
+\item{skip}{número de linhas a saltar na leitura dos dados}
 
-\item{n_max}{Numero de linhas que quer extrair. Se Inf retorna o maximo de linhas}
+\item{n_max}{número de linhas que quer extrair. Se Inf retorna o maximo de linhas}
 
 \item{guess_max}{Total de linhas por partes lidas (chunksize)}
 
@@ -72,5 +72,5 @@ rdb_read_control(
 \item{skip_empty_rows}{Ignorar linhas vazias}
 }
 \description{
-Esta funcao eh uma chave para passar argumentos para a função rdb_read
+Esta função é uma chave para passar argumentos para a função rdb_read
 }

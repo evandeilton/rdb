@@ -22,7 +22,7 @@ rdb_db_write(
 
 \item{name}{String de nome da tabela que vai ser grabada no banco com os dados do objeto 'data'}
 
-\item{schema}{String de nome do schema do banco de dados que deseja salvar. Padrao e 'dbo'}
+\item{schema}{String de nome do schema do banco de dados que deseja salvar. padrão e 'dbo'}
 
 \item{method}{String com um entre os valoes 'dbi' ou 'copy'. Vaje details para mais informacoes.}
 
@@ -30,14 +30,14 @@ rdb_db_write(
 
 \item{verbose}{Se TRUE que mostra todo o log do processo ou apenas algumas partes.}
 
-\item{append}{Se TRUE e a tabela ja existir no banco de dados ele tenta apendar os dados.}
+\item{append}{Se TRUE e a tabela ja existir no banco de dados ele tenta apendar (empilhar) os dados.}
 }
 \description{
 Recebe parametros de uma conexao odbc ativa e exporta uma base de dados
 como data.frame, tibbla, matriz ou data.table subindo por partes.
 }
 \details{
-A configuracao dos tipos de dados e feita atraves de metodos do pacote DBI,
+A configuracao dos tipos de dados e feita através de métodos do pacote DBI,
 dplyr e dbplyr. Existem duas formas de salvar dados no banco de dados. Se a escolha for
 method = 'dbi' o R tentara salvar a base de dados em parte utilizando methodos do pacote DBI,
 caso method = 'copy' ele tentara salvar os dados de uma unica vez sem quebra em partes.

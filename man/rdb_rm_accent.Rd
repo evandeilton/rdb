@@ -13,7 +13,7 @@ rdb_rm_accent(str)
 Vetor de characters sem acentos e sem cedilhas.
 }
 \description{
-Remove acentos (agudos, circunflexos, tremas e crases) e cedilhas de caracteres e strings.
+Remove acentos agudos, circunflexos, tremas, crases e cedilhas de Caractéres e strings.
 }
 \examples{
 \dontrun{

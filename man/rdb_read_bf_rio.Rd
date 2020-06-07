@@ -12,5 +12,6 @@ rdb_read_bf_rio(file, ...)
 \item{...}{Argumentos}
 }
 \description{
-Leitura de dados com pacote rio
+Este é apenas um wraper que deixa a função \code{\link[rio]{import}}
+melhor formatada para passar na função \code{\link{rdb_read}}
 }

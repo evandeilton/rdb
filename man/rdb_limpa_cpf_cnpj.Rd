@@ -7,16 +7,16 @@
 rdb_limpa_cpf_cnpj(doc, fix_na = TRUE)
 }
 \arguments{
-\item{doc}{vetor de numeros ou strings de CPF/CNPJ.}
+\item{doc}{vetor de números ou strings de CPF/CNPJ.}
 
-\item{fix_na}{padroes de NA removidos do numero ou string i}
+\item{fix_na}{padrões de NA removidos do número ou string i}
 }
 \value{
-tibbla com tres colunas, uma com o doc outras com logico se CPF = TRUE ou CNPJ = TRUE
+tibbla com três colunas, uma com o doc outras com lógico se CPF = TRUE ou CNPJ = TRUE
 }
 \description{
-Com apoio do pacote "validaRA", regexes e avaliacao o comprimento das strings no campo de
+Com apoio do pacote "validaRA", regexes e avaliação do comprimento das strings no campo de
 CPF/CNPJ recebido, verifica a validade do campo segundo regras de construcao do CPF/CNPJ e acerta o tamanho.
-Pontos, barras e tracos sao removidos e apenas um vetor numeroc em forma de string eh retornado.
+Pontos, barras e tracos sao removidos e apenas um vetor númerico em forma de string é retornado.
 Ver \code{\link[validaRA]{valida_doc}} para mais detalhes.
 }

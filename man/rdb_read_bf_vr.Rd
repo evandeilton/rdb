@@ -12,5 +12,6 @@ rdb_read_bf_vr(file, control = rdb_read_control(type = "vroom"))
 \item{control}{Controle com todos argumentos necessários para importar dados para uso inteno com a rdb_read()}
 }
 \description{
-Leitura de dados com pacote vroom
+Este é apenas um wraper que deixa a função \code{\link[vroom]{vroom}}
+melhor formatada para passar na função \code{\link{rdb_read}}
 }

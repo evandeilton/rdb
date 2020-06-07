@@ -2,20 +2,20 @@
 % Please edit documentation in R/extras_rdb.R
 \name{is_num}
 \alias{is_num}
-\title{Testa se o valor eh numero}
+\title{Testa se o valor eh numerico}
 \usage{
 is_num(i, check = TRUE, fix_na = FALSE)
 }
 \arguments{
-\item{i}{vetor qualqer numerico}
+\item{i}{vetor qualqer numérico}
 
-\item{check}{se TRUE (padao) avalia o conteudo de i e infere se a variavel total eh de data}
+\item{check}{se TRUE (padão) avalia o conteúdo de i e infere se a variável é de data}
 
-\item{fix_na}{se tiver algum tipo de na no vetor será removido}
+\item{fix_na}{se tiver algum tipo de NA no vetor será removido}
 }
 \value{
-TRUE se o vetor i eh das classes numericas
+TRUE se o vetor i é das classes numéricas
 }
 \description{
-Permite avaliar, atraves do tipo ou do conteudo, se um vetor de dados recebido eh ou nao no tipo numerico
+Permite avaliar, através do tipo ou do conteúdo, se um vetor de dados recebido é ou não no tipo numérico
 }
