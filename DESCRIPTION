@@ -1,0 +1,29 @@
+Type: Package
+Package: rdb
+Title: R data base import and fix big data files
+Version: 0.1.0
+Author: LOPES, J. E.
+Maintainer: LOPES, J. E. <evandeilton@gmail.com>
+Description: Provides a lot os resources for getting, cleaning e
+    fixing big data tables in R.
+License: MIT + file LICENSE
+Suggests: 
+    testthat
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.0
+Imports: 
+    tibble,
+    magrittr,
+    data.table,
+    dplyr,
+    purrr,
+    readr,
+    rio,
+    stringr,
+    validaRA,
+    vroom,
+    stringi,
+    DBI,
+    dbplyr
