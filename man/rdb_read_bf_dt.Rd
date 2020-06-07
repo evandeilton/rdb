@@ -2,7 +2,7 @@
 % Please edit documentation in R/extras_rdb.R
 \name{rdb_read_bf_dt}
 \alias{rdb_read_bf_dt}
-\title{Leitura de dados do pacote data.table}
+\title{Leitura de dados com pacote data.table}
 \usage{
 rdb_read_bf_dt(file, control = rdb_read_control(type = "fread"))
 }
@@ -12,5 +12,5 @@ rdb_read_bf_dt(file, control = rdb_read_control(type = "fread"))
 \item{control}{Controle com todos argumentos necessários para importar dados para uso inteno com a rdb_read()}
 }
 \description{
-Leitura de dados do pacote data.table
+Leitura de dados com pacote data.table
 }

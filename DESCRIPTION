@@ -27,3 +27,4 @@ Imports:
     stringi,
     DBI,
     dbplyr
+Remotes: github::ipea/validaRA
