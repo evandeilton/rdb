@@ -2,7 +2,7 @@
 % Please edit documentation in R/extras_rdb.R
 \name{rdb_rm_na}
 \alias{rdb_rm_na}
-\title{Remove NA.}
+\title{Remove ou substitui NA.}
 \usage{
 rdb_rm_na(x, from = NULL, to = NULL)
 }

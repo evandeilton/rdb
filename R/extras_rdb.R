@@ -31,7 +31,7 @@ rdb_rm_accent <- function(str) {
   return(chartr(paste(symbols, collapse=""), paste(nudeSymbols, collapse=""), stringi::stri_unescape_unicode(str)))
 }
 
-#' Remove NA.
+#' Remove ou substitui NA.
 #' @description Remove acentos agudos, circunflexos, tremas e crases e cedilhas de caracteres e strings.
 #' @param x Vetor qualquer
 #' @param from Qual o codigo que quer remover.
@@ -93,7 +93,7 @@ rdb_limpa_email <- function(email, rm_accent = TRUE, fix_na = TRUE){
   return(stringr::str_squish(x))
 }
 
-#' Verifica se a sting eh email
+#' Verifica se a string eh email
 #'
 #' @description Aplica-se uma regex bem formatada para checar se as strings contendo dados de e-mails
 #' está correta. Se houver alguma alguma string que não bate com a regex então é removida
@@ -116,7 +116,7 @@ is_email <- function(email, rm_accent = TRUE, fix_na = TRUE) {
 }
 
 
-#' Verifica se eh int64
+#' Testa se o valor eh int64 ou logico
 #'
 #' @param i vetor qualqer
 #' @return TRUE se o vetor i eh de classe integer64
@@ -124,7 +124,7 @@ is_int64 <- function(i) {
   if( inherits(i, c("integer64","logical"))) TRUE else FALSE
 }
 
-#' Verifica se i eh data
+#' Testa se o valor eh data
 #'
 #' @description Permite avaliar, atraves do tipo ou do conteudo, se um vetor de dados recebido eh ou nao no tipo data
 #' @param i vetor qualqer
@@ -156,7 +156,7 @@ is_date <- function(i, check = TRUE, fix_na = TRUE) {
   }
 }
 
-#' Verifica se i eh numero
+#' Testa se o valor eh numero
 #'
 #' @description Permite avaliar, atraves do tipo ou do conteudo, se um vetor de dados recebido eh ou nao no tipo numerico
 #' @param i vetor qualqer numerico
@@ -183,7 +183,7 @@ is_num <- function(i, check = TRUE, fix_na = FALSE){
   is.numeric(as.numeric(i))
 }
 
-#' Verifica se eh numerico e se nao for converte
+#' Testa se o valor eh numerico e se nao for converte
 #'
 #' @description Verifica se o conteudo do vetor passado eh de numeros. Quando check = TRUE, a estrutura do dado
 #' eh testadao via regex e se o padrao for detactado, o vetor eh definido como numerico.
@@ -209,7 +209,7 @@ as_num <- function(i, check = TRUE, fix_na = TRUE){
   as.numeric(i)
 }
 
-#' Verifica se i eh CPF
+#' Testa se o valor eh CPF
 #'
 #' Com apoio do pacote "validaRA" testa se o vetor recebido eh um cpf.
 #' @param i vetor de CPF. Ver \code{\link[validaRA]{valida_doc}}
@@ -225,7 +225,7 @@ is_cpf <- function(i, fix_na = TRUE){
   validaRA::valida_doc(as.numeric(out), type = "cpf")
 }
 
-#' Verifica se i eh CNPJ
+#' Testa se o valor eh CNPJ
 #'
 #' Com apoio do pacote "validaRA" testa se o vetor recebido eh um CNPJ.
 #' @param i vetor de CNPJ. Ver \code{\link[validaRA]{valida_doc}}
@@ -241,7 +241,7 @@ is_cnpj <- function(i, fix_na = TRUE){
   validaRA::valida_doc(as.numeric(out), type = "cnpj")
 }
 
-#' Verifica se i eh PIS
+#' Testa se o valor eh PIS
 #'
 #' Com apoio do pacote "validaRA" testa se o vetor recebido eh um PIS
 #' @param i vetor de numeros PIS. Ver \code{\link[validaRA]{valida_doc}}
@@ -258,7 +258,7 @@ is_pis <- function(i, fix_na = TRUE){
 }
 
 
-#' Verifica se eh CEP
+#' Testa se o valor eh CEP
 #'
 #' Via regex e limpeza de dados, verifica se i eh um cep. Olha-se apenas a estrutura
 #' nao validamos se o cep eh valido nos correios
@@ -355,7 +355,7 @@ rdb_try_fix_encoding <- function(x, enc = "latin1"){
 # Funções para leitura de dados de diversos tipos, formatos e tamanhos.
 # ----------------------------------------------------------------------------------------
 
-#' Ler dados do pacote rio
+#' Leitura de dados com pacote rio
 #' @param file Nome do arquivo a ser importado
 #' @param ... Argumentos
 #' @importFrom rio import
@@ -366,7 +366,7 @@ rdb_read_bf_rio <- function(file, ...){
 }
 
 
-#' Ler dados do pacote data.table
+#' Leitura de dados com pacote data.table
 #' @param file Nome do arquivo a ser importado.
 #' @param control Controle com todos argumentos necessários para importar dados para uso inteno com a rdb_read()
 #' @importFrom data.table fread
@@ -379,7 +379,7 @@ rdb_read_bf_dt <- function(file, control = rdb_read_control(type = "fread")){
   )
 }
 
-#' Ler dados do pacote readr
+#' Leitura de dados com pacote readr
 #' @param file Nome do arquivo a ser importado.
 #' @param control Controle com todos argumentos necessários para importar dados para uso inteno com a rdb_read()
 #' @importFrom readr read_csv2 read_delim
@@ -400,7 +400,7 @@ rdb_read_bf_rd <- function(file, control = rdb_read_control(type = "readr")){
   }
 }
 
-#' Ler dados do pacote vroom
+#' Leitura de dados com pacote vroom
 #' @param file Nome do arquivo a ser importado.
 #' @param control Controle com todos argumentos necessários para importar dados para uso inteno com a rdb_read()
 #' @importFrom vroom vroom

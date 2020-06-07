@@ -2,7 +2,7 @@
 % Please edit documentation in R/extras_rdb.R
 \name{rdb_read_bf_rio}
 \alias{rdb_read_bf_rio}
-\title{Ler dados do pacote rio}
+\title{Leitura de dados do pacote rio}
 \usage{
 rdb_read_bf_rio(file, ...)
 }
@@ -12,5 +12,5 @@ rdb_read_bf_rio(file, ...)
 \item{...}{Argumentos}
 }
 \description{
-Ler dados do pacote rio
+Leitura de dados do pacote rio
 }

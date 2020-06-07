@@ -2,7 +2,7 @@
 % Please edit documentation in R/extras_rdb.R
 \name{as_num}
 \alias{as_num}
-\title{Verifica se eh numerico e se nao for converte}
+\title{Testa se o valor eh numerico e se nao for converte}
 \usage{
 as_num(i, check = TRUE, fix_na = TRUE)
 }

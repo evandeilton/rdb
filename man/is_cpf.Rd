@@ -2,7 +2,7 @@
 % Please edit documentation in R/extras_rdb.R
 \name{is_cpf}
 \alias{is_cpf}
-\title{Verifica se i eh CPF}
+\title{Testa se o valor eh CPF}
 \usage{
 is_cpf(i, fix_na = TRUE)
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/extras_rdb.R
 \name{rdb_read_bf_vr}
 \alias{rdb_read_bf_vr}
-\title{Ler dados do pacote vroom}
+\title{Leitura de dados do pacote vroom}
 \usage{
 rdb_read_bf_vr(file, control = rdb_read_control(type = "vroom"))
 }
@@ -12,5 +12,5 @@ rdb_read_bf_vr(file, control = rdb_read_control(type = "vroom"))
 \item{control}{Controle com todos argumentos necessários para importar dados para uso inteno com a rdb_read()}
 }
 \description{
-Ler dados do pacote vroom
+Leitura de dados do pacote vroom
 }

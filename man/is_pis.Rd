@@ -2,7 +2,7 @@
 % Please edit documentation in R/extras_rdb.R
 \name{is_pis}
 \alias{is_pis}
-\title{Verifica se i eh PIS}
+\title{Testa se o valor eh PIS}
 \usage{
 is_pis(i, fix_na = TRUE)
 }

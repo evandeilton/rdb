@@ -2,7 +2,7 @@
 % Please edit documentation in R/extras_rdb.R
 \name{is_cep}
 \alias{is_cep}
-\title{Verifica se eh CEP}
+\title{Testa se o valor eh CEP}
 \usage{
 is_cep(i, fix_na = TRUE)
 }

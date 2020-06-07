@@ -2,7 +2,7 @@
 % Please edit documentation in R/extras_rdb.R
 \name{is_date}
 \alias{is_date}
-\title{Verifica se i eh data}
+\title{Testa se o valor eh data}
 \usage{
 is_date(i, check = TRUE, fix_na = TRUE)
 }

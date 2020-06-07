@@ -2,7 +2,7 @@
 % Please edit documentation in R/extras_rdb.R
 \name{is_email}
 \alias{is_email}
-\title{Verifica se a sting eh email}
+\title{Verifica se a string eh email}
 \usage{
 is_email(email, rm_accent = TRUE, fix_na = TRUE)
 }

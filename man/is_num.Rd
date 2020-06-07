@@ -2,7 +2,7 @@
 % Please edit documentation in R/extras_rdb.R
 \name{is_num}
 \alias{is_num}
-\title{Verifica se i eh numero}
+\title{Testa se o valor eh numero}
 \usage{
 is_num(i, check = TRUE, fix_na = FALSE)
 }

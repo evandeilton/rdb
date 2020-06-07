@@ -2,7 +2,7 @@
 % Please edit documentation in R/extras_rdb.R
 \name{is_cnpj}
 \alias{is_cnpj}
-\title{Verifica se i eh CNPJ}
+\title{Testa se o valor eh CNPJ}
 \usage{
 is_cnpj(i, fix_na = TRUE)
 }
