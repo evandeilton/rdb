@@ -12,13 +12,13 @@ NULL
 #' Tibble support
 #'
 #' @details See \code{tibble::\link[tibble:tibble]{tibble}} for details.
-#' @rdname tibble
+#' @name tibble
 #' @importFrom tibble tibble
 #' @export
 NULL
 
 #' Other deps
-#'
+#' @name odeps
 #' @import stats
 #' @import utils
 NULL

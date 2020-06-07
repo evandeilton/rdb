@@ -10,11 +10,11 @@
 #' @examples
 #' \dontrun{
 #' palavras <- c("\u00e1gua", "op\u00e7\u00e3o", "\u00ff\u00c0\u00ea")
-#' mon_rm_accent(palavras)
+#' rdb_rm_accent(palavras)
 #' }
 #' @importFrom stringi stri_unescape_unicode stri_escape_unicode
 #' @export
-mon_rm_accent <- function(str) {
+rdb_rm_accent <- function(str) {
   if(!is.character(str)) {
     str <- as.character(str)
   }
@@ -41,7 +41,7 @@ mon_rm_accent <- function(str) {
 #' to. Quando to = NULL, padrao, substitui pelo padrao do R que eh NA.
 #' @return Vetor x com as devidas alteracoes
 #' @export
-mon_rm_na <- function(x, from = NULL, to = NULL){
+rdb_rm_na <- function(x, from = NULL, to = NULL){
   i <- x
   codes <- if(is.numeric(i)){
     c(NA, NaN, NULL, -Inf, Inf)
@@ -79,12 +79,12 @@ mon_rm_na <- function(x, from = NULL, to = NULL){
 #' @return Vetor de characters detectados como e-mail
 #' @importFrom stringr str_squish
 #' @export
-mon_limpa_email <- function(email, rm_accent = TRUE, fix_na = TRUE){
+rdb_limpa_email <- function(email, rm_accent = TRUE, fix_na = TRUE){
   if(rm_accent) {
-    x <- mon_rm_accent(email)
+    x <- rdb_rm_accent(email)
   }
   if(fix_na) {
-    x <- mon_rm_na(x)
+    x <- rdb_rm_na(x)
   }
 
   l <- grep("\\<[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}\\>", as.character(x), ignore.case=TRUE, value = TRUE)
@@ -107,10 +107,10 @@ mon_limpa_email <- function(email, rm_accent = TRUE, fix_na = TRUE){
 is_email <- function(email, rm_accent = TRUE, fix_na = TRUE) {
   x <- stringr::str_squish(email)
   if(rm_accent) {
-    x <- mon_rm_accent(x)
+    x <- rdb_rm_accent(x)
   }
   if(fix_na) {
-    x <- mon_rm_na(x)
+    x <- rdb_rm_na(x)
   }
   return(grepl("\\<[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}\\>", as.character(x), ignore.case=TRUE))
 }
@@ -135,7 +135,7 @@ is_int64 <- function(i) {
 is_date <- function(i, check = TRUE, fix_na = TRUE) {
 
   if(fix_na){
-    i <- mon_rm_na(i)
+    i <- rdb_rm_na(i)
   }
 
   check_structure <- function(i){
@@ -168,7 +168,7 @@ is_date <- function(i, check = TRUE, fix_na = TRUE) {
 is_num <- function(i, check = TRUE, fix_na = FALSE){
 
   if(fix_na){
-    i <- mon_rm_na(i)
+    i <- rdb_rm_na(i)
   }
 
   i <- if(check){
@@ -200,7 +200,7 @@ as_num <- function(i, check = TRUE, fix_na = TRUE){
     i
   }
   if(fix_na) {
-    i <- mon_rm_na(i)
+    i <- rdb_rm_na(i)
   }
   if(check){
    l <- stringr::str_squish(grepl("^[\\-\\+]?[0-9]+[\\.]?[0-9]*$|^[\\-\\+]?[0-9]+[L]?$|^[\\-\\+]?[0-9]+[\\.]?[0-9]*[eE][0-9]+$",i,perl=TRUE))
@@ -219,7 +219,7 @@ as_num <- function(i, check = TRUE, fix_na = TRUE){
 #' @export
 is_cpf <- function(i, fix_na = TRUE){
   if(fix_na){
-    i <- mon_rm_na(i)
+    i <- rdb_rm_na(i)
   }
   out <- stringr::str_squish(stringr::str_replace_all(i, "[^[:digit:]]", ""))
   validaRA::valida_doc(as.numeric(out), type = "cpf")
@@ -235,7 +235,7 @@ is_cpf <- function(i, fix_na = TRUE){
 #' @export
 is_cnpj <- function(i, fix_na = TRUE){
   if(fix_na){
-    i <- mon_rm_na(i)
+    i <- rdb_rm_na(i)
   }
   out <- stringr::str_squish(stringr::str_replace_all(i, "[^[:digit:]]", ""))
   validaRA::valida_doc(as.numeric(out), type = "cnpj")
@@ -251,7 +251,7 @@ is_cnpj <- function(i, fix_na = TRUE){
 #' @export
 is_pis <- function(i, fix_na = TRUE){
   if(fix_na){
-    i <- mon_rm_na(i)
+    i <- rdb_rm_na(i)
   }
   out <- stringr::str_squish(stringr::str_replace_all(i, "[^[:digit:]]", ""))
   validaRA::valida_doc(as.numeric(out), type = "pis")
@@ -268,7 +268,7 @@ is_pis <- function(i, fix_na = TRUE){
 #' @export
 is_cep <- function(i, fix_na = TRUE){
   if(fix_na){
-    i <- mon_rm_na(i)
+    i <- rdb_rm_na(i)
   }
   out <- stringr::str_extract(string = i, pattern = "[:digit:]{5}-[:digit:]{3}|[:digit:]+") %>%
     stringr::str_replace_all("[^[:digit:]]", "") %>%
@@ -287,9 +287,9 @@ is_cep <- function(i, fix_na = TRUE){
 #' @param fix_na padroes de NA removidos do numero ou string i
 #' @importFrom stringr str_extract str_replace_all str_squish str_pad
 #' @export
-mon_limpa_cep <- function(cep, fix_na = TRUE){
+rdb_limpa_cep <- function(cep, fix_na = TRUE){
   i <- if(fix_na){
-    mon_rm_na(cep)
+    rdb_rm_na(cep)
   } else {
     cep
   }
@@ -314,9 +314,9 @@ mon_limpa_cep <- function(cep, fix_na = TRUE){
 #' @import validaRA
 #' @return tibbla com tres colunas, uma com o doc outras com logico se CPF = TRUE ou CNPJ = TRUE
 #' @export
-mon_limpa_cpf_cnpj <- function(doc, fix_na = TRUE) {
+rdb_limpa_cpf_cnpj <- function(doc, fix_na = TRUE) {
   i <- if(fix_na){
-    mon_rm_na(doc)
+    rdb_rm_na(doc)
   } else {
     doc
   }
@@ -340,7 +340,7 @@ mon_limpa_cpf_cnpj <- function(doc, fix_na = TRUE) {
 #' @param x vetor string
 #' @param enc flag destino do encoding.
 #' @export
-mon_try_fix_encoding <- function(x, enc = "latin1"){
+rdb_try_fix_encoding <- function(x, enc = "latin1"){
   if(inherits(x, c("character","factor"))){
     x <- as.character(x)
     y <- iconv(x = enc2utf8(x), from = "UTF-8", to = enc)
@@ -360,7 +360,7 @@ mon_try_fix_encoding <- function(x, enc = "latin1"){
 #' @param ... Argumentos
 #' @importFrom rio import
 #' @export
-mon_read_bf_rio <- function(file, ...){
+rdb_read_bf_rio <- function(file, ...){
   #requireNamespace("rio")
   rio::import(file, ...)
 }
@@ -368,10 +368,10 @@ mon_read_bf_rio <- function(file, ...){
 
 #' Ler dados do pacote data.table
 #' @param file Nome do arquivo a ser importado.
-#' @param control Controle com todos argumentos necessários para importar dados para uso inteno com a mon_read()
+#' @param control Controle com todos argumentos necessários para importar dados para uso inteno com a rdb_read()
 #' @importFrom data.table fread
 #' @export
-mon_read_bf_dt <- function(file, control = mon_read_control(type = "fread")){
+rdb_read_bf_dt <- function(file, control = rdb_read_control(type = "fread")){
   #requireNamespace("data.table")
   data.table::fread(input = file, sep = control$delim, dec = control$dec, nrows = control$nrows, quote = control$quote,
                     encoding = control$encoding, header = control$header, skip = control$skip, select = control$select,
@@ -381,10 +381,10 @@ mon_read_bf_dt <- function(file, control = mon_read_control(type = "fread")){
 
 #' Ler dados do pacote readr
 #' @param file Nome do arquivo a ser importado.
-#' @param control Controle com todos argumentos necessários para importar dados para uso inteno com a mon_read()
+#' @param control Controle com todos argumentos necessários para importar dados para uso inteno com a rdb_read()
 #' @importFrom readr read_csv2 read_delim
 #' @export
-mon_read_bf_rd <- function(file, control = mon_read_control(type = "readr")){
+rdb_read_bf_rd <- function(file, control = rdb_read_control(type = "readr")){
   #requireNamespace("readr")
   if(is.null(control$delim)){
     readr::read_csv2(file = file, col_names = control$col_names, col_types = control$col_types, locale = control$locale,
@@ -402,10 +402,10 @@ mon_read_bf_rd <- function(file, control = mon_read_control(type = "readr")){
 
 #' Ler dados do pacote vroom
 #' @param file Nome do arquivo a ser importado.
-#' @param control Controle com todos argumentos necessários para importar dados para uso inteno com a mon_read()
+#' @param control Controle com todos argumentos necessários para importar dados para uso inteno com a rdb_read()
 #' @importFrom vroom vroom
 #' @export
-mon_read_bf_vr <- function(file, control = mon_read_control(type = "vroom")){
+rdb_read_bf_vr <- function(file, control = rdb_read_control(type = "vroom")){
   #requireNamespace("vroom")
   vroom::vroom(file = file, delim = control$delim, quote = control$quote, escape_backslash = control$escape_backslash,
                escape_double = control$escape_double, col_names = control$col_names, col_types = control$col_types,
@@ -415,7 +415,7 @@ mon_read_bf_vr <- function(file, control = mon_read_control(type = "vroom")){
 }
 
 #' @title Controle para leitura de arquivos grandes (Big Files)
-#' @description Esta funcao eh uma chave para passar argumentos para a função mon_read
+#' @description Esta funcao eh uma chave para passar argumentos para a função rdb_read
 #' @param type Nome do mecanisco de leitura. Podendo sem um em "fread","readr","vroom" ou "rio". Veja os detalhes abaixo para mais detalhes.
 #' @param delim Delimitador de colunas, se nao souber deixe NULL. Pode ser, ",", ";", "|" e outros conforme seu arquivo.
 #' @param dec Deparador decimal.
@@ -438,7 +438,7 @@ mon_read_bf_vr <- function(file, control = mon_read_control(type = "vroom")){
 #' @param progress Mostrar progresso da leitura dos dados
 #' @param skip_empty_rows Ignorar linhas vazias
 #' @export
-mon_read_control <- function(type = "fread", delim = NULL, dec = NULL, try_append = TRUE,
+rdb_read_control <- function(type = "fread", delim = NULL, dec = NULL, try_append = TRUE,
                              sep = NULL, quote = "\"", escape_backslash = FALSE,
                              escape_double = TRUE, col_names = TRUE, col_select = NULL,
                              col_types = NULL, encoding = NULL, na = c("", "NA"),
@@ -543,13 +543,13 @@ mon_read_control <- function(type = "fread", delim = NULL, dec = NULL, try_appen
 #' \dontrun{
 #' library("csmon")
 #' f2 <- list.files(pattern = "1-c000.csv.gz$", full.names = TRUE)
-#' a <- mon_read(file = f2, type = "fread")
-#' b <- mon_read(file = f2, type = "readr", delim = ",", col_names = FALSE)
-#' d <- mon_read(file = f2, type = "vroom", delim = ",", col_names = FALSE)
-#' e <- mon_read(file = "/teste_02.xls", type = "rio", sheet = 1, range = "a3:j23")
+#' a <- rdb_read(file = f2, type = "fread")
+#' b <- rdb_read(file = f2, type = "readr", delim = ",", col_names = FALSE)
+#' d <- rdb_read(file = f2, type = "vroom", delim = ",", col_names = FALSE)
+#' e <- rdb_read(file = "/teste_02.xls", type = "rio", sheet = 1, range = "a3:j23")
 #' }
 #' @export
-mon_read <- function(file, type = "fread", delim = NULL, dec = NULL, try_append = TRUE,
+rdb_read <- function(file, type = "fread", delim = NULL, dec = NULL, try_append = TRUE,
                      sep = NULL, quote = "\"", escape_backslash = FALSE,
                      escape_double = TRUE, col_names = TRUE, col_select = NULL,
                      col_types = NULL, encoding = NULL, na = c("", "NA"),
@@ -557,7 +557,7 @@ mon_read <- function(file, type = "fread", delim = NULL, dec = NULL, try_append 
                      guess_max = min(1000, n_max), altrep = TRUE,
                      progress = NULL, skip_empty_rows = TRUE, ...){
 
-  control <- mon_read_control(type = type, delim = delim, dec = dec, try_append = try_append,
+  control <- rdb_read_control(type = type, delim = delim, dec = dec, try_append = try_append,
                               sep = sep, quote = quote, escape_backslash = escape_backslash,
                               escape_double = escape_double, col_names = col_names,
                               col_select = col_select, col_types = col_types, encoding = encoding,
@@ -567,16 +567,16 @@ mon_read <- function(file, type = "fread", delim = NULL, dec = NULL, try_append 
 
   try_read_fb <- switch(type,
                         fread = try(purrr::map(.x = as.list(file), .f = function(i){
-                          mon_read_bf_dt(i, control, ...)
+                          rdb_read_bf_dt(i, control, ...)
                         })),
                         readr = try(purrr::map(.x = as.list(file), .f = function(i){
-                          mon_read_bf_rd(i, control, ...)
+                          rdb_read_bf_rd(i, control, ...)
                         })),
                         vroom = try(purrr::map(.x = as.list(file), .f = function(i){
-                          mon_read_bf_vr(i, control, ...)
+                          rdb_read_bf_vr(i, control, ...)
                         })),
                         rio = try(purrr::map(.x = as.list(file), .f = function(i){
-                          mon_read_bf_rio(i, ...)
+                          rdb_read_bf_rio(i, ...)
                         }))
   )
   out <- if(try_append){
@@ -593,7 +593,7 @@ mon_read <- function(file, type = "fread", delim = NULL, dec = NULL, try_append 
 #' @param n Total de linhas da base total
 #' @param nrows Total de linhas por bloco
 #' @export
-mon_cut <- function(n, nrows = 1000){
+rdb_cut <- function(n, nrows = 1000){
   x <- seq_len(n)
   n <- length(x)
   p <- nrows / n
@@ -614,7 +614,7 @@ mon_cut <- function(n, nrows = 1000){
 #' Remove colchetes, parentesis e chaves
 #' @param x string de dados
 #' @export
-mon_clean_brackets <- function(x){
+rdb_clean_brackets <- function(x){
   trimws(gsub(pattern = '\\[|\\]|\\(|\\)|\\{|\\}|\\\\|"\"', replacement = "", x))
 }
 
@@ -644,7 +644,7 @@ mon_clean_brackets <- function(x){
 #' @importFrom purrr map map_df
 #' @importFrom tibble as_tibble
 #' @export
-mon_db_write <- function(con, data, name, schema = "dbo", method = "dbi", chunk_size = 5999, verbose = TRUE, append = FALSE){
+rdb_db_write <- function(con, data, name, schema = "dbo", method = "dbi", chunk_size = 5999, verbose = TRUE, append = FALSE){
   method <- match.arg(method, c("dbi","copy"))
   query <- paste0(schema, ".", name)
   nm_base <- colnames(data)
@@ -674,7 +674,7 @@ mon_db_write <- function(con, data, name, schema = "dbo", method = "dbi", chunk_
 
   aux_split_data <- function(da, chunk_size){
     nm_base <- colnames(da)
-    da[, `:=` (temp_quebra__ = mon_cut(.N, nrows = chunk_size))]
+    da[, `:=` (temp_quebra__ = rdb_cut(.N, nrows = chunk_size))]
     splt <- purrr::map(split(da, da$temp_quebra__), function(i){
       tibble::as_tibble(i[, ..nm_base])
     })
