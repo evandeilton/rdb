@@ -35,7 +35,7 @@ O rdb não está no cran, mas pode ser instalado direto do github.
 devtools::install_github("evandeilton/rdb")
 ```
 
-Se não econtrar a biblioteca [!validaRA](), ela poderá ser instaladas antes da mesma forma.
+Se não econtrar a biblioteca [validaRA](https://github.com/cran/validara), ela poderá ser instaladas antes da mesma forma.
 
 ``` r
 devtools::install_github("ipea/validaRA")
@@ -52,10 +52,12 @@ library(tidyverse)
 ## Lendo dados da página Web do covid-19
 da <- rdb_read(file = "https://brasil.io/dataset/covid19/caso_full/?format=csv", type = "rio")
 
-da %>%
-    dplyr::summarise_if(.predicate = "is_num", .funs = function(i){
-        mean(as_num(i), na.rm = TRUE)
-    }) %>%
-  knitr::kable()
+da %>% 
+  dplyr::select(state, dplyr::contains("last_available_")) %>% 
+  dplyr::group_by(state) %>%
+  dplyr::summarise_if(.predicate = "is_num", .funs = function(i){
+    mean(as_num(i), na.rm = TRUE)
+  }) %>% 
+  knitr::kable(digits = 4, col.names = gsub("last_available_", "", names(.)))
   
 ```
