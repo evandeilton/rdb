@@ -24,4 +24,4 @@ NULL
 NULL
 
 # variaveis globais
-utils::globalVariables(c('::',':','.','<<-','.N','doc_','temp_quebra__','..nm_base','query','ini0'))
+utils::globalVariables(c('::',':','.','.N','doc_','temp_quebra__','..nm_base','query','ini0'))
