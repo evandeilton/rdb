@@ -1,0 +1,61 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# O rdb
+
+<!-- badges: start -->
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![CRAN status](https://www.r-pkg.org/badges/version/rdb)](https://CRAN.R-project.org/package=rdb)
+[![Travis build status](https://travis-ci.com/evandeilton/rdb.svg?branch=master)](https://travis-ci.com/evandeilton/rdb)
+<!-- badges: end -->
+
+O objetivo do pacote rdb é dispor uma série de funções especiais para obter dados, mipular e limpar.
+São utulizados métodos de pacotes como [data.table](https://cran.r-project.org/web/packages/data.table/index.html),
+[vroom](https://cran.r-project.org/web/packages/vroom/index.html), algumas dependências do [tidyverse ](https://www.tidyverse.org/).
+Para exportar dados via ODBC, trabalhamos com apoio da biblioteca [DBI](https://cran.r-project.org/web/packages/DBI/index.html).
+O pacote é experimental e ainda está em desenvolvimento, então não está livre de bugs.
+
+## Instalação
+
+O rdb não está no cran, mas pode ser instalado direto do github.
+
+``` r
+devtools::install_github("evandeilton/rdb")
+```
+
+Se não econtrar a biblioteca [!validaRA](), ela poderá ser instaladas antes da mesma forma.
+
+``` r
+devtools::install_github("ipea/validaRA")
+```
+
+## Exemplos
+
+Exemplo da lida de dados de um site web com apoio da função `rdb`.
+
+```{r example, message=FALSE, warning=FALSE}
+library(rdb)
+library(tidyverse)
+
+## Lendo dados da página Web do covid-19
+da <- rdb_read(file = "https://brasil.io/dataset/covid19/caso_full/?format=csv", type = "rio")
+
+da %>%
+    dplyr::summarise_if(.predicate = "is_num", .funs = function(i){
+        mean(as_num(i), na.rm = TRUE)
+    }) %>%
+  knitr::kable()
+  
+```
