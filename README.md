@@ -41,7 +41,8 @@ devtools::install_github("ipea/validaRA")
 
 ## Exemplos
 
-Exemplo da lida de dados de um site web com apoio da função `rdb`.
+Exemplo da lida de dados de um site web com apoio da função `rdb_read`,
+teste lógico com `is_num` e coarse clase com `as_num`.
 
 ``` r
 library(rdb)
@@ -53,9 +54,11 @@ da <- rdb_read(file = "https://brasil.io/dataset/covid19/caso_full/?format=csv",
 da %>% 
   dplyr::select(state, dplyr::contains("last_available_")) %>% 
   dplyr::group_by(state) %>%
-  dplyr::summarise_if(.predicate = "is_num", .funs = function(i){
-    mean(as_num(i), na.rm = TRUE)
-  }) %>% 
+  dplyr::summarise_if(.predicate = "is_num",
+                      .funs = function(i){
+                        mean(as_num(i), na.rm = TRUE)
+                        }
+                      ) %>% 
   knitr::kable(digits = 4, col.names = gsub("last_available_", "", names(.)))
 ```
 
