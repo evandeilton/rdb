@@ -38,7 +38,7 @@ devtools::install_github("evandeilton/rdb")
 Se não econtrar a biblioteca [validaRA](https://github.com/cran/validara), ela poderá ser instaladas antes da mesma forma.
 
 ``` r
-devtools::install_github("ipea/validaRA")
+devtools::install_github("evandeilton/validaRA")
 ```
 
 ## Exemplos
