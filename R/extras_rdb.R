@@ -275,7 +275,8 @@ is_cep <- function(i, fix_na = TRUE){
   out <- stringr::str_extract(string = i, pattern = "[:digit:]{5}-[:digit:]{3}|[:digit:]+") %>%
     stringr::str_replace_all("[^[:digit:]]", "") %>%
     stringr::str_squish() %>%
-    as_num()
+    stringr::str_pad(width = 8, pad = 0)
+
   return(nchar(out) <= 8)
 }
 
@@ -622,10 +623,8 @@ rdb_cut <- function(n, nrows = 1000){
   return(y)
 }
 
-
 #' Remove colchetes, parentesis e chaves
 #' @param x string de dados
-#' @export
 rdb_clean_brackets <- function(x){
   trimws(gsub(pattern = '\\[|\\]|\\(|\\)|\\{|\\}|\\\\|"\"', replacement = "", x))
 }
@@ -658,14 +657,21 @@ rdb_clean_brackets <- function(x){
 #' @importFrom purrr map map_df
 #' @importFrom tibble as_tibble
 #' @export
-rdb_db_write <- function(con, data, name, schema = "dbo", method = "dbi", chunk_size = 5999, verbose = TRUE, append = FALSE){
+rdb_db_write <- function(con, data, name,
+                         schema = "dbo", method = "dbi",
+                         chunk_size = 5999, verbose = TRUE, append = FALSE){
+
   method <- match.arg(method, c("dbi","copy"))
   query <- paste0(schema, ".", name)
   nm_base <- colnames(data)
   ini0 <- Sys.time()
 
+  if(!inherits(data, "data.table")){
+    data <- data.table::setDT(data)
+  }
+
   aux_method_dbi_write <- function(con, da, append, ...){
-    query = paste0(schema, ".", name)
+    query <- paste0(schema, ".", name)
     DBI::dbWriteTable(conn = con, name = DBI::SQL(query), value = da,
                       #field.types = as.character(tipos),
                       overwrite = FALSE, append = append,
@@ -717,13 +723,6 @@ rdb_db_write <- function(con, data, name, schema = "dbo", method = "dbi", chunk_
     schema <- "dbo"
   }
 
-  # Quebrando os dados de entrada em pedacos de acordo com o total de linhas a subir em lotes.
-  # Parte 1. cria uma base tamanho nrows com os tipos detectados na base total.
-  # Parte 2. cria lista com restante da tabelas para subir via insert em lotes pequenos.
-  if(!inherits(data, "data.table")){
-    data <- data.table::setDT(data)
-  }
-
   if(!split_data | method == "copy"){
     ini <- Sys.time()
     cat(timestamp(prefix =  "log: ", suffix = " Processando dados e checando comunicacao com o banco ...\n", quiet = TRUE))
@@ -771,7 +770,6 @@ rdb_db_write <- function(con, data, name, schema = "dbo", method = "dbi", chunk_
         cat(timestamp(prefix = "log: ",  suffix = verb, quiet = TRUE))
       }
     }
-
     # Gravar restante das bases em loop por insert.
     {
       for(i in names(PN)){
@@ -797,4 +795,3 @@ rdb_db_write <- function(con, data, name, schema = "dbo", method = "dbi", chunk_
     return(invisible(out))
   }
 }
-
