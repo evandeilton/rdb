@@ -277,7 +277,7 @@ is_cep <- function(i, fix_na = TRUE){
     stringr::str_squish() %>%
     stringr::str_pad(width = 8, pad = 0)
 
-  return(nchar(out) <= 8)
+  return(nchar(out) == 8)
 }
 
 #' Limpa CEP
